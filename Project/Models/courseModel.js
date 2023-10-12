@@ -33,4 +33,5 @@ function validateData(course) {
     return Joi.validate(course, schema)
 }
 exports.Course=Course
+exports.courseSchema=courseSchema
 exports.validate=validateData

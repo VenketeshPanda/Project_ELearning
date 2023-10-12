@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const {courseSchema} = require('../Models/courseModel')
 const Joi = require('joi')
 
 const studentSchema = mongoose.Schema({              //Schema
@@ -6,6 +7,10 @@ const studentSchema = mongoose.Schema({              //Schema
     isEnrolled:{
         type:Boolean,
         default:false
+    },
+    courseEnrolled:{
+        type: courseSchema,
+        required: true
     },
     phone:{
         type: String,
@@ -21,6 +26,7 @@ function validateData(category) {
     const schema = {
         name: Joi.string().min(3).required(),
         isEnrolled: Joi.boolean(),
+        courseId: Joi.string().required(),
         phone: Joi.number().min(10).required()
     }
     return Joi.validate(category, schema)
